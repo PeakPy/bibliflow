@@ -1,0 +1,35 @@
+# Core
+Django>=4.2,<5.0
+djangorestframework>=3.14,<4.0
+
+# Database
+psycopg2-binary>=2.9
+
+# Task Queue
+celery>=5.3
+redis>=5.0
+
+# Env & Config
+python-dotenv>=1.0
+
+# Utils
+python-slugify>=8.0
+
+# Testing
+pytest>=7.4
+pytest-django>=4.6
+pytest-cov>=4.0
+
+# Quality / Tooling
+black>=24.0
+flake8>=6.1
+isort>=5.12
+mypy>=1.7
+
+# for production
+django-cors-headers>=4.3
+django-filter>=23.5
+uvicorn>=0.24
+gunicorn>=21.2
+django-storages>=1.14
+boto3>=1.29

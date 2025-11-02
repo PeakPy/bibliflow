@@ -1,0 +1,19 @@
+# Python / Django
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pytest_cache/
+*.coverage
+env/
+venv/
+.env
+*.sqlite3
+
+# Docker
+db_data/
+redis_data/
+
+# IDE
+.vscode/
+.idea/
