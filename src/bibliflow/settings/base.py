@@ -23,7 +23,6 @@ INSTALLED_APPS = [
 
     # Third party apps
     'drf_spectacular',
-    'drf_yasg',
     'rest_framework',
     'corsheaders',
     'django_celery_results',
@@ -31,7 +30,6 @@ INSTALLED_APPS = [
     # Local apps
     'apps.core',
     'apps.books',
-
     'apps.imports',
 ]
 
@@ -107,6 +105,7 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
     ],
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 20,
     'DEFAULT_RENDERER_CLASSES': [
@@ -124,6 +123,7 @@ SPECTACULAR_SETTINGS = {
     'DESCRIPTION': 'CSV Import System API',
     'VERSION': '1.0.0',
     'SERVE_INCLUDE_SCHEMA': False,
+    'COMPONENT_SPLIT_REQUEST': True,
 }
 
 # CORS configuration

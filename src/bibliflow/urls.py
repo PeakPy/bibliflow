@@ -1,5 +1,5 @@
 ﻿from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from django.http import JsonResponse
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, SpectacularRedocView
 
@@ -19,23 +19,10 @@ urlpatterns = [
     path('swagger/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
     path('redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
     
-
+    # API endpoints
 ]
 
-
-try:
-    from apps.books import urls as books_urls
-    urlpatterns.append(path('api/books/', include(books_urls)))
-except ImportError:
-    pass
-
-try:
-    from apps.imports import urls as imports_urls
-    urlpatterns.append(path('api/imports/', include(imports_urls)))
-except ImportError:
-    pass
-
-
+# Debug toolbar (فقط در حالت توسعه)
 try:
     import debug_toolbar
     urlpatterns.append(path('__debug__/', include(debug_toolbar.urls)))
