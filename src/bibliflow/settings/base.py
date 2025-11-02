@@ -1,4 +1,4 @@
-import os
+﻿import os
 from pathlib import Path
 import environ
 from datetime import timedelta
@@ -22,6 +22,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Third party apps
+    'drf_spectacular',
+    'drf_yasg',
     'rest_framework',
     'corsheaders',
     'django_celery_results',
@@ -29,6 +31,7 @@ INSTALLED_APPS = [
     # Local apps
     'apps.core',
     'apps.books',
+
     'apps.imports',
 ]
 
@@ -113,6 +116,14 @@ REST_FRAMEWORK = {
         'rest_framework.parsers.JSONParser',
         'rest_framework.parsers.MultiPartParser',
     ],
+}
+
+# drf-spectacular configuration
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Bibliflow API',
+    'DESCRIPTION': 'CSV Import System API',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
 }
 
 # CORS configuration

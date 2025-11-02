@@ -1,1 +1,1 @@
-# core init\n
+﻿
