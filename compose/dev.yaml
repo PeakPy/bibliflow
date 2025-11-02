@@ -3,11 +3,13 @@ services:
     build:
       context: ..
       dockerfile: docker/web.Dockerfile
-    command: >
-      sh -c "/app/scripts/wait-for.sh db:5432 -- 
-             python /app/src/manage.py wait_for_db &&
-             python /app/src/manage.py migrate &&
-             python /app/src/manage.py runserver 0.0.0.0:8000"
+    entrypoint: >
+      sh -c "
+      /app/scripts/wait-for.sh db:5432 &&
+      python /app/src/manage.py wait_for_db &&
+      python /app/src/manage.py migrate &&
+      python /app/src/manage.py runserver 0.0.0.0:8000
+      "
     volumes:
       - ../src:/app/src
       - ../scripts:/app/scripts
@@ -54,10 +56,12 @@ services:
     build:
       context: ..
       dockerfile: docker/celery.Dockerfile
-    command: >
-      sh -c "/app/scripts/wait-for.sh db:5432 -- 
-             /app/scripts/wait-for.sh redis:6379 -- 
-             celery -A bibliflow worker --loglevel=info --concurrency=4"
+    entrypoint: >
+      sh -c "
+      /app/scripts/wait-for.sh db:5432 &&
+      /app/scripts/wait-for.sh redis:6379 &&
+      celery -A bibliflow worker --loglevel=info --concurrency=4
+      "
     volumes:
       - ../src:/app/src
       - ../scripts:/app/scripts
@@ -83,3 +87,4 @@ volumes:
 networks:
   bibliflow_network:
     driver: bridge
+
